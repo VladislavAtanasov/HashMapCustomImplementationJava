@@ -3,6 +3,7 @@ package HashMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -377,13 +378,15 @@ public class CustomMap<K, V> implements Map<K, V> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(Object o) {
-		if (o == this)
-			return true;
+		if (o == null)
+			return false;
 
 		if (!(o instanceof Map))
 			return false;
 		Map<K, V> m = (Map<K, V>) o;
-
+		if (m.entrySet().size() != this.entrySet().size()) {
+			return false;
+		}
 		return m.entrySet().equals(this.entrySet());
 	}
 
@@ -440,23 +443,13 @@ public class CustomMap<K, V> implements Map<K, V> {
 		hm.put("Vladislav", 6.0);
 		hm.put("Vladislav", 7.0);
 		hm.put("Pesho", 7.1);
-		System.out.println(hm.keySet());
-		System.out.println(hm.values());
-		System.out.println(hm.remove("Pesho", 7.1));
-		System.out.println(hm.keySet());
-		System.out.println(hm.values());
-		System.out.println(hm.getOrDefault("Vladisla", 21.0));
-		System.out.println(hm.putIfAbsent("Rado", 35.1));
-		System.out.println(hm.keySet());
-		System.out.println(hm.values());
-		for (Entry<String, Double> entry : hm.entrySet()) {
-			System.out.println(entry);
-		}
 		System.out.println(hm.entrySet());
-		Map<String, Double> hm1 = new CustomMap<>();
+		Map<String, Double> hm1 = new HashMap<>();
 		hm1.put("Vladislav", 6.0);
 		hm1.put("Vladislav", 7.0);
 		hm1.put("Pesho", 7.1);
+		// hm1.put("klkl", 34.1);
+		System.out.println(hm1.entrySet());
 		System.out.println(hm.equals(hm1));
 	}
 
